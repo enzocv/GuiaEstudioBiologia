@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class GuiaBiologiaMain extends AppCompatActivity {
@@ -33,7 +37,6 @@ public class GuiaBiologiaMain extends AppCompatActivity {
     DatabaseReference mDatabaseReference = database.getReference();
 
     private static Context mcontext;
-    private static String keyDB;
 
 
     private static final String userId = "40";
@@ -69,13 +72,40 @@ public class GuiaBiologiaMain extends AppCompatActivity {
                 mDatabaseReference.child("users").child(userId).child("guias").getRef()
         ) {
             @Override
-            protected void populateViewHolder(GuiaViewHolder viewHolder, Guia model, int position) {
+            protected void populateViewHolder(final GuiaViewHolder viewHolder, Guia model, int position) {
                 if(tvNoMovies.getVisibility()== View.VISIBLE){
                     tvNoMovies.setVisibility(View.GONE);
                 }
                 viewHolder.tvGuiaDescription.setText(model.getDescription_guia());
 //                viewHolder.tvRelevantFac1.setText(model.getRelevant_fact_1());
                 Picasso.with(GuiaBiologiaMain.this).load(model.getImage_guia()).into(viewHolder.ivGuiaPoster);
+
+                final String modKeyDB = getRef(position).getKey(); // get key branch
+                final String modRelevant = model.getRelevant_fact_1(); // get key branch
+
+
+                viewHolder.viewVH.setOnClickListener(new View.OnClickListener() {
+                    String relevant =  modRelevant;
+
+                    @Override
+                    public void onClick(View v) {
+                        String descrip = viewHolder.tvGuiaDescription.getText().toString();
+//                        Toast.makeText(mcontext, descrip, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(mcontext, relevant, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(mcontext, ModifyGuiaBiologiaActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("description",descrip );
+                        bundle.putString("relevant", relevant);
+                        bundle.putString("keyDB", modKeyDB);
+                        intent.putExtra("description",descrip);
+                        intent.putExtra("relevant",relevant);
+                        intent.putExtra("keyDB",modKeyDB);
+
+                        mcontext.startActivity(intent);
+
+                    }
+                });
 
             }
         };
@@ -127,30 +157,25 @@ public class GuiaBiologiaMain extends AppCompatActivity {
                 ,tvRelevantFac1;
         ImageView ivGuiaPoster;
 
+        View viewVH;
+
         public GuiaViewHolder(View v) {
             super(v);
             tvGuiaDescription = (TextView) v.findViewById(R.id.guia_name);
             tvRelevantFac1 = (TextView) v.findViewById(R.id.guia_relevant1);
             ivGuiaPoster = (ImageView) v.findViewById(R.id.iv_guia_poster);
 
+            viewVH = v;
+
             /**
              * Method: click for each CardView
              */
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String titulo = tvGuiaDescription.getText().toString();
-                    String link = ivGuiaPoster.getTransitionName();
-                    Toast.makeText(v.getContext(),keyDB,Toast.LENGTH_LONG).show();
-
-//                    Intent intent = new Intent(mcontext, Nuevo.class);
-                    //Bundle bundle = new Bundle();
-                    //bundle.putString("titulo",titulo );
-//                    intent.putExtra("tema",titulo);
-
-//                    mcontext.startActivity(intent);
-                }
-            });
+//            v.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
 
         }
 

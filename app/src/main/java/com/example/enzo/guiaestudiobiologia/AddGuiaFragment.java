@@ -71,9 +71,6 @@ public class AddGuiaFragment extends Fragment implements View.OnClickListener{
         //referring to movies node and setting the values from movie object to that location
         mDatabaseReference.child("users").child(userId).child("guias").push().setValue(guia);
 
-        String keyDB = mDatabaseReference.child("users").child(userId).child("guias").getKey();
-
-        Toast.makeText(getContext(),keyDB, Toast.LENGTH_SHORT).show();
     }
 
     //check if edittext is empty
