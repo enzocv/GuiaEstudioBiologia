@@ -1,4 +1,4 @@
-# GuiaEstudioBiologia
+# Guia Estudio Biologia
 
 ## Contexto
 
