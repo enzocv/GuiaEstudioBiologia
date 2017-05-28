@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GuiaEstudioBiologia</string>
+    <string name="guia_name_hint">Ingrese una Guia</string>
 </resources>
