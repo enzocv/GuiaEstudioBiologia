@@ -1,6 +1,7 @@
 package com.example.enzo.guiaestudiobiologia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,7 @@ public class GuiaBiologiaMain extends AppCompatActivity {
     DatabaseReference mDatabaseReference = database.getReference();
 
     private static Context mcontext;
+    private static String keyDB;
 
 
     private static final String userId = "40";
@@ -42,6 +45,8 @@ public class GuiaBiologiaMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guia_biologia_main);
+
+        mcontext = this;
 
         //Initializing our Recyclerview
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
@@ -71,6 +76,7 @@ public class GuiaBiologiaMain extends AppCompatActivity {
                 viewHolder.tvGuiaDescription.setText(model.getDescription_guia());
 //                viewHolder.tvRelevantFac1.setText(model.getRelevant_fact_1());
                 Picasso.with(GuiaBiologiaMain.this).load(model.getImage_guia()).into(viewHolder.ivGuiaPoster);
+
             }
         };
 
@@ -130,6 +136,21 @@ public class GuiaBiologiaMain extends AppCompatActivity {
             /**
              * Method: click for each CardView
              */
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String titulo = tvGuiaDescription.getText().toString();
+                    String link = ivGuiaPoster.getTransitionName();
+                    Toast.makeText(v.getContext(),keyDB,Toast.LENGTH_LONG).show();
+
+//                    Intent intent = new Intent(mcontext, Nuevo.class);
+                    //Bundle bundle = new Bundle();
+                    //bundle.putString("titulo",titulo );
+//                    intent.putExtra("tema",titulo);
+
+//                    mcontext.startActivity(intent);
+                }
+            });
 
         }
 

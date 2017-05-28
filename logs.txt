@@ -1,8 +1,9 @@
-commit 093fe89e72fed6358c4e59cf750f6b8867c6c1e0
-Author: Enzo Catalán Vargas <enzocv96@gmail.com>
-Date:   Sun May 28 10:33:43 2017 -0500
 
-    click cardview bug
+commit 9b50514c32c2abb5bddb99acc0ec38aa8460cac3
+Author: Enzo Catalán Vargas <enzocv96@gmail.com>
+Date:   Sun May 28 11:02:46 2017 -0500
+
+    reset add
 
 commit baf7c30d38ceeb60b38a20c0954dd7f6b8755efc
 Author: Enzo <enzocv96@gmail.com>
