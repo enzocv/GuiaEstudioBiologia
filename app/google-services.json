@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "370368596502",
+    "firebase_url": "https://guia-biologia.firebaseio.com",
+    "project_id": "guia-biologia",
+    "storage_bucket": "guia-biologia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370368596502:android:f4c69b05ab77f7bb",
+        "android_client_info": {
+          "package_name": "com.example.enzo.guiaestudiobiologia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370368596502-mmonkgmgala7s2n016ls3ik51c1cdkso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD6XOxMA1yFd0q4lzaUGDEhMjNPhk4v_A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
