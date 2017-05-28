@@ -1,5 +1,10 @@
 package com.example.enzo.guiaestudiobiologia;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Asus on 27/05/2017.
  */
@@ -54,4 +59,16 @@ public class Guia {
     public void setImage_guia(String image_guia) {
         this.image_guia = image_guia;
     }
+
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("description_guia", description_guia);
+        result.put("relevant_fact_1", relevant_fact_1);
+        result.put("image_guia", image_guia);
+
+        return result;
+    }
+
 }

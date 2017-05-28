@@ -167,16 +167,6 @@ public class GuiaBiologiaMain extends AppCompatActivity {
 
             viewVH = v;
 
-            /**
-             * Method: click for each CardView
-             */
-//            v.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
-
         }
 
     }

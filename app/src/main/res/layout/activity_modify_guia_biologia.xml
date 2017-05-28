@@ -27,7 +27,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese el primer hecho relevante "
+            android:hint="Hecho relevante "
             android:id="@+id/mod_relevant_fact"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -36,6 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Modificar"/>
+        android:text="Modificar" />
 
 </LinearLayout>
