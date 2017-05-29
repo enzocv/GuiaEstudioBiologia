@@ -23,6 +23,7 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
     DatabaseReference mDatabaseReference = database.getReference();
 
     TextInputEditText tvdescription, tvrelevant_fac;//, tvrelevant_fac2;
+    TextInputEditText tvDbRel1, tvDbRel2;//, tvrelevant_fac2;
 
     private static Context mcontext;
 
@@ -37,6 +38,10 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
 //        tvrelevant_fac2 = (TextInputEditText)findViewById(R.id.mod_relevant_fact2) ;
         Button btn_update = (Button) findViewById(R.id.mod_btn_submit);
 
+        tvDbRel1 = (TextInputEditText)findViewById(R.id.db_mod_relevant_fact) ;
+        tvDbRel2 = (TextInputEditText)findViewById(R.id.db_mod_relevant_fact2) ;
+
+
         String modDescription = getIntent().getStringExtra("description");
         final String mRelevant = getIntent().getStringExtra("relevant"); //1
         final String mRelevant2 = getIntent().getStringExtra("relevant2"); //2
@@ -45,7 +50,10 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
 
         //load values
         tvdescription.setText(modDescription);
-        tvrelevant_fac.setText(mRelevant);
+//        tvrelevant_fac.setText(mRelevant);
+
+        tvDbRel1.setText(mRelevant);
+        tvDbRel2.setText(mRelevant2);
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
