@@ -76,30 +76,35 @@ public class GuiaBiologiaMain extends AppCompatActivity {
                 if(tvNoMovies.getVisibility()== View.VISIBLE){
                     tvNoMovies.setVisibility(View.GONE);
                 }
+                // load values from Firebase
                 viewHolder.tvGuiaDescription.setText(model.getDescription_guia());
-//                viewHolder.tvRelevantFac1.setText(model.getRelevant_fact_1());
+                viewHolder.tvRelevantFac1.setText(model.getRelevant_fact_1());
+                viewHolder.tvRelevantFac2.setText(model.getRelevant_fact_2());
                 Picasso.with(GuiaBiologiaMain.this).load(model.getImage_guia()).into(viewHolder.ivGuiaPoster);
 
                 final String modKeyDB = getRef(position).getKey(); // get key branch
-                final String modRelevant = model.getRelevant_fact_1(); // get key branch
+                final String modRelevant = model.getRelevant_fact_1(); // get value relevant_fact_1
+                final String modRelevant2 = model.getRelevant_fact_2(); // get value relevant_fact_2
 
 
                 viewHolder.viewVH.setOnClickListener(new View.OnClickListener() {
-                    String relevant =  modRelevant;
+                    String relevant =  modRelevant
+                            ,relevant2 =  modRelevant2 ;
 
                     @Override
                     public void onClick(View v) {
                         String descrip = viewHolder.tvGuiaDescription.getText().toString();
-//                        Toast.makeText(mcontext, descrip, Toast.LENGTH_LONG).show();
-//                        Toast.makeText(mcontext, relevant, Toast.LENGTH_LONG).show();
 
+                        // submit values to Modify layout activity
                         Intent intent = new Intent(mcontext, ModifyGuiaBiologiaActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("description",descrip );
                         bundle.putString("relevant", relevant);
+                        bundle.putString("relevant2", relevant2);
                         bundle.putString("keyDB", modKeyDB);
                         intent.putExtra("description",descrip);
                         intent.putExtra("relevant",relevant);
+                        intent.putExtra("relevant2",relevant2);
                         intent.putExtra("keyDB",modKeyDB);
 
                         mcontext.startActivity(intent);
@@ -154,7 +159,8 @@ public class GuiaBiologiaMain extends AppCompatActivity {
     //ViewHolder for our Firebase UI
     public static class GuiaViewHolder extends RecyclerView.ViewHolder{
         TextView tvGuiaDescription
-                ,tvRelevantFac1;
+                ,tvRelevantFac1
+                ,tvRelevantFac2;
         ImageView ivGuiaPoster;
 
         View viewVH;
@@ -163,6 +169,7 @@ public class GuiaBiologiaMain extends AppCompatActivity {
             super(v);
             tvGuiaDescription = (TextView) v.findViewById(R.id.guia_name);
             tvRelevantFac1 = (TextView) v.findViewById(R.id.guia_relevant1);
+            tvRelevantFac2 = (TextView) v.findViewById(R.id.guia_relevant2);
             ivGuiaPoster = (ImageView) v.findViewById(R.id.iv_guia_poster);
 
             viewVH = v;

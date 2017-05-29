@@ -13,6 +13,7 @@ public class Guia {
 
     public String description_guia;
     public String relevant_fact_1;
+    public String relevant_fact_2;
     public String image_guia;
 
     /**
@@ -24,11 +25,13 @@ public class Guia {
      * Constructor with parameters
      * @param description_guia
      * @param relevant_fact_1
+     * @param relevant_fact_2
      * @param image_guia
      */
-    public Guia(String description_guia, String relevant_fact_1, String image_guia) {
+    public Guia(String description_guia, String relevant_fact_1,String relevant_fact_2, String image_guia) {
         this.description_guia = description_guia;
         this.relevant_fact_1 = relevant_fact_1;
+        this.relevant_fact_2 = relevant_fact_2;
         this.image_guia = image_guia;
     }
 
@@ -50,6 +53,14 @@ public class Guia {
 
     public void setRelevant_fact_1(String relevant_fact_1) {
         this.relevant_fact_1 = relevant_fact_1;
+    }
+
+    public String getRelevant_fact_2() {
+        return relevant_fact_2;
+    }
+
+    public void setRelevant_fact_2(String relevant_fact_2) {
+        this.relevant_fact_2 = relevant_fact_2;
     }
 
     public String getImage_guia() {

@@ -22,7 +22,7 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mDatabaseReference = database.getReference();
 
-    TextInputEditText tvdescription, tvrelevant_fac;
+    TextInputEditText tvdescription, tvrelevant_fac;//, tvrelevant_fac2;
 
     private static Context mcontext;
 
@@ -34,24 +34,38 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
 
         tvdescription = (TextInputEditText)findViewById(R.id.mod_description) ;
         tvrelevant_fac = (TextInputEditText)findViewById(R.id.mod_relevant_fact) ;
+//        tvrelevant_fac2 = (TextInputEditText)findViewById(R.id.mod_relevant_fact2) ;
         Button btn_update = (Button) findViewById(R.id.mod_btn_submit);
 
         String modDescription = getIntent().getStringExtra("description");
-        String mRelevant = getIntent().getStringExtra("relevant");
+        final String mRelevant = getIntent().getStringExtra("relevant"); //1
+        final String mRelevant2 = getIntent().getStringExtra("relevant2"); //2
 
         final String keyDB = getIntent().getStringExtra("keyDB");
 
+        //load values
         tvdescription.setText(modDescription);
         tvrelevant_fac.setText(mRelevant);
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get extras from guia main layout
+                String rel_1 = getIntent().getStringExtra("relevant"); //1
+                String rel_2 = getIntent().getStringExtra("relevant2"); //2
+
+                //get values from modify guia layout
                 String des = tvdescription.getText().toString().trim();
-                String rel = tvrelevant_fac.getText().toString().trim();
+                String rel = tvrelevant_fac.getText().toString().trim(); // 1
+
+                // changed values: relevant fact old -> new (max 2 relevant fact)
+                String rel_1_help = rel_2;
+                rel_2 = rel;
+                rel_1 = rel_1_help;
 
                 String taskId = keyDB;
 
+                // update branch: description_guia; relevant_fact_1; relevant_fact_2
                 mDatabaseReference
                         .child("users")
                         .child("40")
@@ -60,8 +74,14 @@ public class ModifyGuiaBiologiaActivity extends AppCompatActivity {
                 mDatabaseReference
                         .child("users")
                         .child("40")
-                        .child("guias").child(keyDB).child("relevant_fact_1").setValue(rel);
+                        .child("guias").child(keyDB).child("relevant_fact_1").setValue(rel_1);
 
+                mDatabaseReference
+                        .child("users")
+                        .child("40")
+                        .child("guias").child(keyDB).child("relevant_fact_2").setValue(rel_2);
+
+                // go back main layout activity
                 Intent intent = new Intent(mcontext, GuiaBiologiaMain.class);
                 mcontext.startActivity(intent);
             }

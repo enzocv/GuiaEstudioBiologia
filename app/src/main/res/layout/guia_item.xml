@@ -31,6 +31,8 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.2"
                 android:text="Titulo:"
                 android:textSize="18sp"
@@ -40,19 +42,44 @@
                 android:id="@+id/guia_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight=".8"
                 android:gravity="center"
                 android:text="Guia"
+                android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.2"
+                android:text="Hechos Relevantes:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/guia_relevant1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".8"/>
+                android:layout_marginLeft="5dp"
+                android:layout_weight=".8"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/guia_relevant2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight=".8"
+                android:textSize="18sp"
+                android:visibility="visible" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

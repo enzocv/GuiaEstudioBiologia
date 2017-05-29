@@ -23,6 +23,7 @@ public class AddGuiaFragment extends Fragment implements View.OnClickListener{
     private DatabaseReference mDatabaseReference;
     private TextInputEditText guiaDescription;
     private TextInputEditText guiaRelevantFact1;
+    private TextInputEditText guiaRelevantFact2;
     private TextInputEditText guiaLogo;
     private Button bSubmit;
     //END PROPERTIES
@@ -33,6 +34,7 @@ public class AddGuiaFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.guia_fragment,container,false);
         guiaDescription = (TextInputEditText) v.findViewById(R.id.guia_description);
         guiaRelevantFact1 = (TextInputEditText) v.findViewById(R.id.relevant_fact_1);
+        guiaRelevantFact2 = (TextInputEditText) v.findViewById(R.id.relevant_fact_2);
         guiaLogo = (TextInputEditText) v.findViewById(R.id.url_guia);
         bSubmit = (Button) v.findViewById(R.id.btn_submit);
         //initializing database reference
@@ -46,10 +48,12 @@ public class AddGuiaFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.btn_submit:
+                //check empty values
                 if(!isEmpty(guiaDescription) && !isEmpty(guiaDescription)){
                     myNewGuia("40"
                             ,guiaDescription.getText().toString().trim()
                             ,guiaRelevantFact1.getText().toString().trim()
+                            ,guiaRelevantFact2.getText().toString().trim()
                             ,guiaLogo.getText().toString()
                     );
                 }else{
@@ -65,9 +69,9 @@ public class AddGuiaFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void myNewGuia(String userId, String guiaDescription, String guiaRelevantFact1, String guiaLogo) {
+    private void myNewGuia(String userId, String guiaDescription, String guiaRelevantFact1, String guiaRelevantFact2, String guiaLogo) {
         //Creating a movie object with user defined variables
-        Guia guia = new Guia(guiaDescription, guiaRelevantFact1, guiaLogo);
+        Guia guia = new Guia(guiaDescription, guiaRelevantFact1, guiaRelevantFact2, guiaLogo);
         //referring to movies node and setting the values from movie object to that location
         mDatabaseReference.child("users").child(userId).child("guias").push().setValue(guia);
 
